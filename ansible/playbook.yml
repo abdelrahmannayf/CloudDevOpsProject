@@ -1,0 +1,18 @@
+- hosts: jenkins
+  become: yes
+
+  roles:
+    - jenkins
+
+  tasks:
+
+    - name: Install git
+      dnf:
+        name: git
+        state: present
+
+    - name: Ensure docker is running
+      service:
+        name: docker
+        state: started
+        enabled: yes

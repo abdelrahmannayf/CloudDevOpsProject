@@ -1,0 +1,2 @@
+[jenkins]
+192.168.86.136 ansible_user=nayf

@@ -1,0 +1,7 @@
+cat <<EOF > .gitignore
+.terraform/
+*.tfstate*
+.terraform.lock.hcl
+*.exe
+*.zip
+EOF
