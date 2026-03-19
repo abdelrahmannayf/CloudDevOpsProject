@@ -53,15 +53,23 @@ stages {
     }
 
     stage('Push Manifest Changes') {
-        steps {
-            sh '''
-            git config --global user.name "jenkins"
-            git config --global user.email "jenkins@example.com"
+    steps {
+            // بنستخدم الـ ID اللي في الصورة عندك عشان يدي جينكنز صلاحية الرفع
+            withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                sh '''
+                    # إعداد بيانات المستخدم
+                    git config user.name "jenkins"
+                    git config user.email "jenkins@example.com"
 
-            git add .
-            git commit -m "Update image version"
-            git push
-            '''
+                    # تحديث الـ Remote URL عشان يشمل الـ Token/Password
+                    # بنشيل الـ https:// ونحط بدالها الـ URL بالـ Credentials
+                    git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/abdelrahmannayf/CloudDevOpsProject.git
+
+                    git add .
+                    # الـ || true عشان لو مفيش تغييرات الـ Pipeline ميفشلش
+                    git commit -m "Update image version to ${BUILD_NUMBER}" || true
+                    git push origin main
+                '''
         }
     }
 }
