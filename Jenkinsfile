@@ -31,6 +31,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'github-cred', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sh '''
                         git checkout main
+                        git pull origin main
                         git config user.name "jenkins"
                         git config user.email "jenkins@example.com"
                         git remote set-url origin https://$GIT_USERNAME:$GIT_PASSWORD@github.com/abdelrahmannayf/CloudDevOpsProject.git
