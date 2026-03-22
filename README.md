@@ -1,6 +1,6 @@
 
 # ☁️ CloudDevOps Project
-
+![](screenshots/final.png)
 A complete end-to-end DevOps pipeline for a Flask web application — covering containerization, CI/CD, GitOps deployment, infrastructure provisioning, and configuration management.
 
 ---
@@ -130,7 +130,10 @@ terraform apply -auto-approve
 | Security Group   | jenkins-sg (ports 22, 8080)|
 | CloudWatch Alarm | jenkins-cpu-alarm          |
 | S3 Backend       | clouddevops-tf-state-abdo  |
-
+![](screenshots/aws4.png)
+![](screenshots/aws2.png)
+![](screenshots/aws1.png)
+![](screenshots/aws1.png)
 ---
 
 ### 4️⃣ Configure Servers with Ansible
@@ -169,11 +172,11 @@ kubectl get svc -n finalpro
    - Default version: `main`
    - Repository: `https://github.com/abdelrahmannayf/CloudDevOpsProject.git`
 4. Create a new **Pipeline** job pointing to this repository
-
+![](screenshots/jenkins.png)
 ---
 
 ### 7️⃣ Setup ArgoCD
-
+![](screenshots/argo.png)
 ```bash
 # Install ArgoCD
 kubectl create namespace argocd
@@ -286,7 +289,7 @@ CloudWatch alarm configured on the Jenkins EC2:
 | `github-cred`    | Username/Token    | Jenkins Pipeline |
 
 ---
-
+![](screenshots/docker.png)
 ## 👤 Author
 
 **Abdelrahman Nayf**
