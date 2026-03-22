@@ -1,3 +1,5 @@
+@Library('shared-library') _
+
 pipeline {
     agent any
     environment {
@@ -6,7 +8,7 @@ pipeline {
     stages {
         stage('Build Image') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:latest ./source'
+                buildImage(IMAGE_NAME)
             }
         }
         stage('Scan Image (Trivy)') {
@@ -16,10 +18,7 @@ pipeline {
         }
         stage('Push Image') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
-                    sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
-                    sh 'docker push $IMAGE_NAME:latest'
-                }
+                pushImage(IMAGE_NAME)
             }
         }
         stage('Update Kubernetes Manifest') {
