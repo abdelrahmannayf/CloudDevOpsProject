@@ -130,12 +130,12 @@ terraform apply -auto-approve
 | Security Group   | jenkins-sg (ports 22, 8080)|
 | CloudWatch Alarm | jenkins-cpu-alarm          |
 | S3 Backend       | clouddevops-tf-state-abdo  |
+
+---
 ![](screenshots/aws4.png)
 ![](screenshots/aws2.png)
 ![](screenshots/aws1.png)
 ![](screenshots/aws1.png)
----
-
 ### 4️⃣ Configure Servers with Ansible
 
 ```bash
