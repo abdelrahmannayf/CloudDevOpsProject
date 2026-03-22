@@ -1,8 +1,9 @@
-resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
-
-  tags = {
-    Name = "DevOps-VPC"
-  }
+module "network" {
+  source = "./modules/network"
 }
 
+module "server" {
+  source           = "./modules/server"
+  vpc_id           = module.network.vpc_id
+  public_subnet_id = module.network.public_subnet_id
+}
